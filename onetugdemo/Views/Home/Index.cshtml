@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Twilio is the Dealio!";
+}
+<script src="@Url.Content("~/Scripts/jquery.signalR-0.5.2.min.js")" type="text/javascript"></script>
+<script src="/signalr/hubs" type="text/javascript"></script>
+ 
+   <script type="text/javascript">
+       $(function () {
+           // Proxy created on the fly
+           var chat = $.connection.console;
+
+           // Declare a function on the chat hub so the server can invoke it
+           chat.addMessage = function (message) {
+               $('#messages').append('<li>' + message + '</li>');
+           };
+
+           $("#broadcast").click(function () {
+               // Call the chat method on the server
+               chat.send($('#msg').val());
+           });
+
+           // Start the connection
+           $.connection.hub.start();
+       });
+    </script>
+    <h1>@onetugdemo.Models.Constants.From</h1>
+    <input id="msg">
+    <input id="broadcast" value="say" type="button">
+    <ul id="messages"></ul>
+
+    <hr />
+    <h1>Joel Martinez</h1>
+    <p>Blog: <a href="http://codecube.net">http://codecube.net</a></p>
+    <p>Twitter: <a href="http://twitter.com/joelmartinez">@@joelmartinez</a></p>
+    <p>Email: <a href="mailto:joelmartinez@gmail.com">joelmartinez@gmail.com</a></p>
+    <p>What I'm doing these days:</p>
+    <p><a href="https://play.google.com/store/apps/details?id=com.about.CalorieCount&feature=search_result#?t=W251bGwsMSwyLDEsImNvbS5hYm91dC5DYWxvcmllQ291bnQiXQ..">
+    <img src="https://lh6.ggpht.com/e2G3R1w8x8kQf6FY-4960u9YnPGvi0L1R1YGao7HzNDdatVHUforns4RECS7H9opDro=w124" style="border:none" /></a></p>
